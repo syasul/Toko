@@ -57,7 +57,7 @@ public class daoBarang {
                 statement.setString(5, brg.getMerk());
                 statement.executeUpdate();
             } catch (SQLException ex) {
-                
+                ex.printStackTrace();
             }
         }
         

@@ -10,7 +10,7 @@ package com.mycompany.toko;
  */
 public class Toko {
     public static void main(String[] args){
-    
+        System.out.println("test");
     }
 }
     

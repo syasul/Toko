@@ -1,12 +1,16 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package View;
 
 import Controller.controllerBarang;
+import Model.Barang;
+import Model.TabelModelBarang;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -265,13 +269,7 @@ controllerBarang cBarang;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKeluarActionPerformed
-        // TODO add your handling code here:
-         btnKeluar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cBarang.keluar();
-            }
-        });
+          cBarang.keluar();
     }//GEN-LAST:event_btnKeluarActionPerformed
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
@@ -287,37 +285,31 @@ controllerBarang cBarang;
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
-       btnBatal.addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e){
                cBarang.bersih();
                cBarang.tampil_label();
-           }
-       });
+
     }//GEN-LAST:event_btnBatalActionPerformed
     
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-        btnHapus.addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e){
-               
                cBarang.hapusData();
                cBarang.tampil_label();
-           }
-        });
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
-        // TODO add your handling code here:
-        btnUbah.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e){
-                cBarang.ubahData();
-                cBarang.tampil_label();
-//                new
-                cBarang.addDataToForm(tblBarang.getSelectedRow());
-            }
-        });
+        int i = tblBarang.getSelectedRow();
+        TabelModelBarang tblmdl =(TabelModelBarang)tblBarang.getModel();
+        if (i > 0){
+            tblmdl.setValueAt(txtKode.getText(), i,0);
+            tblmdl.setValueAt(txtNama.getText(), i,1);
+            tblmdl.setValueAt(txtJumlah.getText(), i,2);
+            tblmdl.setValueAt(txtHarga.getText(), i,3);
+            tblmdl.setValueAt(txtMerek.getText(), i,4);
+             cBarang.tampil_label();
+             
+        }
+//        cBarang.ubahData();
+       
+// TODO add your handling code here:        
     }//GEN-LAST:event_btnUbahActionPerformed
 
     private void txtMerekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMerekActionPerformed
@@ -327,7 +319,30 @@ controllerBarang cBarang;
     
 //    new
     private void tblBarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBarangMouseClicked
-        cBarang.addDataToForm(tblBarang.getSelectedRow());
+        tblBarang.addMouseListener(new MouseAdapter() {
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        int selectedRows = tblBarang.getSelectedRow();
+        TabelModelBarang tblmdl =(TabelModelBarang)tblBarang.getModel();
+        txtKode.setText(tblmdl.getValueAt(selectedRows, 0).toString());
+        txtNama.setText(tblmdl.getValueAt(selectedRows, 1).toString());
+        txtJumlah.setText(tblmdl.getValueAt(selectedRows, 2).toString());
+        txtHarga.setText(tblmdl.getValueAt(selectedRows, 3).toString());
+        txtMerek.setText(tblmdl.getValueAt(selectedRows, 4).toString());
+//        cBarang.IsiRow(selectedRows);
+//        Object data = tblBarang.getValueAt(selectedRows, 0); 
+//        txtKode.setText(data.toString());
+//        Object nama = tblBarang.getValueAt(selectedRows, 1);
+//        txtNama.setText(nama.toString());
+//        Object jumlah = tblBarang.getValueAt(selectedRows, 2);
+//        txtJumlah.setText(jumlah.toString());
+//        Object harga = tblBarang.getValueAt(selectedRows, 3);
+//        txtHarga.setText(harga.toString());
+//        Object merek = tblBarang.getValueAt(selectedRows, 4);
+//        txtMerek.setText(merek.toString());
+    }
+});
+//        cBarang.addDataToForm(tblBarang.getSelectedRow());
     }//GEN-LAST:event_tblBarangMouseClicked
 
     /**

@@ -46,27 +46,28 @@ public class controllerBarang {
     }
     
 //    new
-    public void addDataToForm(int row) {
-        frame.getTextKode().setText(listBrg.get(row).getKode());
-        frame.getTextNama().setText(listBrg.get(row).getNama());
-        frame.getTxtJumlah().setText(String.valueOf(listBrg.get(row).getJumlah()));
-        frame.getTxtHarga().setText(String.valueOf(listBrg.get(row).getHarga()));
-        frame.getTextMerek().setText(listBrg.get(row).getMerk());
-        
-    }
-    
-//    new
+//    public void IsiRow(int row) {
+//        frame.getTextKode().setText(listBrg.get(row).getKode());
+//        frame.getTextNama().setText(listBrg.get(row).getNama());
+//        frame.getTxtJumlah().setText(String.valueOf(listBrg.get(row).getJumlah()));
+//        frame.getTxtHarga().setText(String.valueOf(listBrg.get(row).getHarga()));
+//        frame.getTextMerek().setText(listBrg.get(row).getMerk());
+//        
+//    }
+//    
+////    new
     public void ubahData() {
-        if (!frame.getTextKode().getText().trim().isEmpty()){
+         if (frame.getTextKode().getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Kode Barang Belum Diisi");
+        } else {
             brg.setKode(frame.getTextKode().getText());
             brg.setNama(frame.getTextNama().getText());
             brg.setJumlah(Integer.parseInt(frame.getTxtJumlah().getText()));
             brg.setHarga(Integer.parseInt(frame.getTxtHarga().getText()));
             brg.setMerk(frame.getTextMerek().getText());
             daoBrg.ubah(brg);
-             JOptionPane.showMessageDialog(frame,"Berhasil mengupdate data");
-        } else {
-             JOptionPane.showMessageDialog(frame,"Gagal mengupdate data");
+            System.out.println("Berhasil update Data");
+            JOptionPane.showMessageDialog(frame,"Berhasil update data");
         }
     }
     
