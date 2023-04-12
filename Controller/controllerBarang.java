@@ -65,6 +65,7 @@ public class controllerBarang {
             brg.setJumlah(Integer.parseInt(frame.getTxtJumlah().getText()));
             brg.setHarga(Integer.parseInt(frame.getTxtHarga().getText()));
             brg.setMerk(frame.getTextMerek().getText());
+            
             daoBrg.ubah(brg);
             System.out.println("Berhasil update Data");
             JOptionPane.showMessageDialog(frame,"Berhasil update data");

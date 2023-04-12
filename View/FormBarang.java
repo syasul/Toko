@@ -296,19 +296,9 @@ controllerBarang cBarang;
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
-        int i = tblBarang.getSelectedRow();
-        TabelModelBarang tblmdl =(TabelModelBarang)tblBarang.getModel();
-        if (i > 0){
-            tblmdl.setValueAt(txtKode.getText(), i,0);
-            tblmdl.setValueAt(txtNama.getText(), i,1);
-            tblmdl.setValueAt(txtJumlah.getText(), i,2);
-            tblmdl.setValueAt(txtHarga.getText(), i,3);
-            tblmdl.setValueAt(txtMerek.getText(), i,4);
-             cBarang.tampil_label();
-             
-        }
-//        cBarang.ubahData();
-       
+       cBarang.ubahData();
+       cBarang.tampil_label();
+
 // TODO add your handling code here:        
     }//GEN-LAST:event_btnUbahActionPerformed
 
